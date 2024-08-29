@@ -1,96 +1,100 @@
+# **YOLOv8s-OBB for Detecting Houses and Tennis Courts**
 
-# Oriented Object Detection with YOLOv8s-obb
+## **Project Overview**
 
-This project involves implementing and evaluating an object detection model that also handles object orientation. The model is trained to detect objects and estimate their orientation in images. This README provides an overview of the project, setup instructions, and usage details.
+This project leverages the **YOLOv8s-OBB** model to detect and classify **houses** and **tennis courts** in images. The dataset was carefully annotated and preprocessed using **Roboflow** to optimize detection accuracy. This project demonstrates the power of Object-Oriented Bounding Boxes (OBB) in enhancing object detection, especially for objects with irregular orientations.
 
-## Table of Contents
+## **Table of Contents**
 
-1. [Project Overview](#project-overview)
-2. [Dataset Preparation](#dataset-preparation)
-3. [Model Implementation](#model-implementation)
-4. [Training](#training)
-5. [Evaluation](#evaluation)
-6. [Visualization](#visualization)
-7. [Setup and Usage](#setup-and-usage)
-8. [Acknowledgements](#acknowledgements)
-9. [References](#references)
+1. [Project Structure](#project-structure)
+2. [Setup and Installation](#setup-and-installation)
+3. [Data Preparation](#data-preparation)
+4. [Model Training](#model-training)
+5. [Results](#results)
+6. [Key Highlights](#key-highlights)
+7. [How to Use](#how-to-use)
+8. [Acknowledgments](#acknowledgments)
+9. [Contact](#contact)
 
-## Project Overview
+## **Project Structure**
 
-The objective of this project is to implement an object detection model capable of predicting both bounding boxes and orientation angles of objects. The YOLOv8s-obb model is used to achieve this.
+```
+.
+├── datasets/
+│   ├── train/
+│   ├── test/
+│   └── valid/
+├── runs/
+│   ├── obb/
+│       ├── train/
+│       └── val/
+├── notebooks/
+│   ├── training_notebook.ipynb
+├── README.md
+└── requirements.txt
+```
 
-## Dataset Preparation
+## **Setup and Installation**
 
-- **Source:** The dataset was annotated using Roboflow, focusing on images with objects such as Tennis courts and Houses.
-- **Process:** Images were annotated with bounding boxes and orientation angles. The dataset was divided into training, validation, and test sets.
-- **Tools:** Familiarity with Roboflow was leveraged from previous experience to efficiently handle annotation and data preparation.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yourusername/yolov8s-obb-detection.git
+   cd yolov8s-obb-detection
+   ```
 
-## Model Implementation
+2. **Install the required libraries:**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-- **Architecture:** YOLOv8s-obb was used, which is modified to predict object orientations along with bounding boxes.
-- **Extension:** Adapted YOLO to include orientation prediction capabilities.
+3. **Set up your environment:**
+   - Ensure you have access to a GPU for faster training (e.g., using Google Colab).
 
-## Training
+## **Data Preparation**
 
-- **Epochs:** Trained for 35 epochs.
-- **Results:**
-  - **mAP50:** 0.784
-  - **mAP50-95:** 0.664
-  - **Class Performance:** High accuracy for Tennis courts (0.992) and lower for Houses (0.576).
+The dataset used in this project was prepared and annotated by myself, using **Roboflow** for preprocessing. It includes:
 
-## Evaluation
+- **Annotations:** Each image was annotated with Object-Oriented Bounding Boxes (OBBs) to enhance detection accuracy for rotated or skewed objects.
+- **Classes:** The dataset contains two classes: `houses` and `tennis_courts`.
+- **Normalization:** Images and labels were normalized and resized to fit the input size of the YOLOv8s-OBB model.
 
-- **Metrics:** Evaluated using orientation accuracy, bounding box accuracy, and combined metrics.
-- **Results:** Performance metrics indicate successful detection and orientation prediction, with some limitations in angle accuracy.
+## **Model Training**
 
-## Visualization
+The YOLOv8s-OBB model was fine-tuned using the prepared dataset:
 
-- **Process:** Predicted bounding boxes and orientation angles were visualized on test images.
-- **Conclusion:** The visualization demonstrates the model's capability to handle object detection with orientation, though angle accuracy may be limited due to technology constraints.
+- **Model:** YOLOv8s-OBB.
+- **Training:** The model was trained for 35 epochs with a batch size of 8.
+- **Optimization:** Used adaptive learning rates and data augmentation for better generalization.
 
-## Setup and Usage
+## **Results**
 
-1. **Clone the Repository:**
+The model successfully detected and classified houses and tennis courts in the test images. Here are some examples:
 
-    ```bash
-    git clone <repository-url>
-    cd <repository-directory>
-    ```
+![Example 1](./runs/obb/val/sample1.jpg)
+![Example 2](./runs/obb/val/sample2.jpg)
 
-2. **Install Dependencies:**
+## **Key Highlights**
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+- **Object-Oriented Bounding Boxes (OBBs):** These bounding boxes allow for more precise detection of objects that are not perfectly aligned with the image axes.
+- **Applications:** The use of OBBs can be extended to various fields such as urban planning, disaster management, and aerial imagery analysis.
 
-3. **Prepare Dataset:**
-   - Download and annotate the dataset using Roboflow.
-   - Organize images and labels into `train`, `valid`, and `test` directories.
+## **How to Use**
 
-4. **Train the Model:**
+1. **Inference:**
+   To run inference on new images, follow the steps in the `training_notebook.ipynb` notebook.
 
-    ```bash
-    python train.py --data <dataset-path> --weights <pretrained-weights> --epochs <number-of-epochs>
-    ```
+2. **Evaluation:**
+   Evaluate the model using the test dataset provided in the `datasets/test/` directory.
 
-5. **Evaluate the Model:**
+3. **Customization:**
+   You can retrain the model with your own dataset by following the steps in the `training_notebook.ipynb`.
 
-    ```bash
-    python evaluate.py --weights <trained-weights> --data <dataset-path>
-    ```
+## **Acknowledgments**
 
-6. **Visualize Results:**
+Special thanks to **Roboflow** for providing an excellent platform for dataset preparation and to the **YOLO** community for their continuous contributions to object detection research.
 
-    ```bash
-    python visualize.py --weights <trained-weights> --data <test-data-path>
-    ```
+## **Contact**
 
-## Acknowledgements
+For any inquiries or collaboration opportunities, feel free to reach out to me:
 
-While the visualization successfully demonstrates the model's object detection and orientation capabilities, it's important to note that the accuracy of these angles may be limited due to the constraints of the current technology. Despite this, the code meets the project's requirements and effectively illustrates the model’s functionality.
-
-## References
-
-- [Ultralytics YOLO Documentation](https://docs.ultralytics.com)
-- [Roboflow Documentation](https://roboflow.com/docs)
-- [Training Custom Dataset YOLOv8-obb](https://alimustoofaa.medium.com/training-custom-dataset-yolov8-obb-oriented-object-detection-9c5bbde99923)
+- **Email:** [sanjaykabaddi5858@gmail.com](mailto:sanjaykabaddi5858@gmail.com)
