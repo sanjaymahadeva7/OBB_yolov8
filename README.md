@@ -7,14 +7,13 @@ This project leverages the **YOLOv8s-OBB** model to detect and classify **houses
 ## **Table of Contents**
 
 1. [Project Structure](#project-structure)
-2. [Setup and Installation](#setup-and-installation)
-3. [Data Preparation](#data-preparation)
-4. [Model Training](#model-training)
-5. [Results](#results)
-6. [Key Highlights](#key-highlights)
-7. [How to Use](#how-to-use)
-8. [Acknowledgments](#acknowledgments)
-9. [Contact](#contact)
+2. [Data Preparation](#data-preparation)
+3. [Model Training](#model-training)
+4. [Results](#results)
+5. [Key Highlights](#key-highlights)
+6. [How to Use](#how-to-use)
+7. [Acknowledgments](#acknowledgments)
+8. [Contact](#contact)
 
 ## **Project Structure**
 
@@ -34,21 +33,6 @@ This project leverages the **YOLOv8s-OBB** model to detect and classify **houses
 └── requirements.txt
 ```
 
-## **Setup and Installation**
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/yourusername/yolov8s-obb-detection.git
-   cd yolov8s-obb-detection
-   ```
-
-2. **Install the required libraries:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Set up your environment:**
-   - Ensure you have access to a GPU for faster training (e.g., using Google Colab).
 
 ## **Data Preparation**
 
